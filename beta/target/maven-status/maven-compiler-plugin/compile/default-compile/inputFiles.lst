@@ -1,0 +1,17 @@
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/repository/UserRepository.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/exception/ResourceNotFoundException.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/model/User.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/repository/UserRepository.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/exception/ResourceNotFoundException.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/Application.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/service/UserService.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/exception/GlobalExceptionHandler.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/exception/GlobalExceptionHandler.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/exception/ErrorResponse.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/service/UserService.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/controller/UserController.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/exception/ErrorResponse.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/control_stock/Application.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/model/User.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/controller/MovimientosController.java
+/home/pc-1/Documentos/beta/src/main/java/com/mobeats/beta/controller/UserController.java
