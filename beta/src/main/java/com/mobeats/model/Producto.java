@@ -9,11 +9,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-public class Producto {
+public class Producto{
  @Entity
 @Table(name = "productos")
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Productos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -66,7 +66,7 @@ public class User {
    *
    * @param name the first name
    */
-  public void setFirstName(String name) {
+  public void setName(String name) {
         this.name = name;
     }
 
@@ -75,16 +75,16 @@ public class User {
    *
    * @return the email
    */
-  public String getDescripiton() {
-        return description;
-    }
+  public String getDescription() { // Corrected method name here
+    return description;
+}
 
   /**
    * Sets email.
    *
    * @param description the email
    */
-  public void setEmail(String description) {
+  public void setDescription(String description) {
         this.description = description;
     }
 
