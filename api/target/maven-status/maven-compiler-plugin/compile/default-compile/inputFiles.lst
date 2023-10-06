@@ -1,0 +1,6 @@
+/home/pc-1/Descargas/api/src/main/java/com/mobeats/api/controller/ProductoController.java
+/home/pc-1/Descargas/api/src/main/java/com/mobeats/api/exception/ResourceNotFoundException.java
+/home/pc-1/Descargas/api/src/main/java/com/mobeats/api/Application.java
+/home/pc-1/Descargas/api/src/main/java/com/mobeats/api/service/ProductoService.java
+/home/pc-1/Descargas/api/src/main/java/com/mobeats/api/repository/ProductoRepository.java
+/home/pc-1/Descargas/api/src/main/java/com/mobeats/api/model/Producto.java
