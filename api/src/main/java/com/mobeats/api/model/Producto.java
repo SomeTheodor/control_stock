@@ -16,15 +16,15 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "descripcion", nullable = false)
     private String description;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "fecha_actualizacion", nullable = false)
     private Date updatedAt;
 
     @Column(name = "updated_by", nullable = false)

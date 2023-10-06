@@ -29,7 +29,7 @@ public class ProductoController {
    *
    * @return the list
    */
-  @GetMapping("/users")
+  @GetMapping("/productos")
   public List<Producto> getAllUsers() {
     return productoRepository.findAll();
   }
