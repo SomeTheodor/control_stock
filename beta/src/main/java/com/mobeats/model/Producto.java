@@ -5,15 +5,12 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-
 import java.util.Date;
 
-
-public class Producto{
- @Entity
+@Entity
 @Table(name = "productos")
 @EntityListeners(AuditingEntityListener.class)
-public class Productos {
+public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,106 +31,54 @@ public class Productos {
     @LastModifiedBy
     private String updatedBy;
 
-  /**
-   * Gets id.
-   *
-   * @return the id
-   */
-  public long getId() {
+    public long getId() {
         return id;
     }
 
-  /**
-   * Sets id.
-   *
-   * @param id the id
-   */
-  public void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-  /**
-   * Gets first name.
-   *
-   * @return the first name
-   */
-  public String getName() {
+    public String getName() {
         return name;
     }
 
-  /**
-   * Sets first name.
-   *
-   * @param name the first name
-   */
-  public void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-  /**
-   * Gets email.
-   *
-   * @return the email
-   */
-  public String getDescription() { // Corrected method name here
-    return description;
-}
+    public String getDescription() {
+        return description;
+    }
 
-  /**
-   * Sets email.
-   *
-   * @param description the email
-   */
-  public void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-  /**
-   * Gets updated at.
-   *
-   * @return the updated at
-   */
-  public Date getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-  /**
-   * Sets updated at.
-   *
-   * @param updatedAt the updated at
-   */
-  public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-  /**
-   * Gets updated by.
-   *
-   * @return the updated by
-   */
-  public String getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-  /**
-   * Sets updated by.
-   *
-   * @param updatedBy the updated by
-   */
-  public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
     @Override
     public String toString() {
-        return "Productos{" +
+        return "Producto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", updatedAt=" + updatedAt +
-                ", updatedby='" + updatedBy + '\'' +
+                ", updatedBy='" + updatedBy + '\'' +
                 '}';
     }
-
-}
 }
