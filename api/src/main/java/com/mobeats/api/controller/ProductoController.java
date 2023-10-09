@@ -30,7 +30,7 @@ public class ProductoController {
    * @return the list
    */
   @GetMapping("/productos")
-  public List<Producto> getAllUsers() {
+  public List<Producto> getAllProductos() {
     return productoRepository.findAll();
   }
 
@@ -42,7 +42,7 @@ public class ProductoController {
    * @throws ResourceNotFoundException the resource not found exception
    */
   @GetMapping("/productos/{id}")
-  public ResponseEntity<Producto> getUsersById(@PathVariable(value = "id") Long productoId)
+  public ResponseEntity<Producto> getProductoById(@PathVariable(value = "id") Long productoId)
       throws ResourceNotFoundException {
     Producto producto =
         productoRepository
@@ -58,7 +58,7 @@ public class ProductoController {
    * @return the user
    */
   @PostMapping("/productos")
-  public Producto createUser(@Valid @RequestBody Producto producto) {
+  public Producto createProducto(@Valid @RequestBody Producto producto) {
     return productoRepository.save(producto);
   }
 
@@ -71,9 +71,9 @@ public class ProductoController {
    * @throws ResourceNotFoundException the resource not found exception
    */
   @PutMapping("/productos/{id}")
-  public ResponseEntity<Producto> updateUser(
-      @PathVariable(value = "id") Long productoId, @Valid @RequestBody Producto productoDetails)
-      throws ResourceNotFoundException {
+public ResponseEntity<Producto> updateProducto(
+    @PathVariable(value = "id") Long productoId, @Valid @RequestBody Producto productoDetails)
+    throws ResourceNotFoundException {
 
     Producto producto =
         productoRepository
@@ -83,9 +83,9 @@ public class ProductoController {
     producto.setDescription(productoDetails.getDescription());
     producto.setName(productoDetails.getName());
     producto.setUpdatedAt(new Date());
-    final Producto updatedUser = productoRepository.save(producto);
-    return ResponseEntity.ok(updatedUser);
-  }
+    final Producto updatedProducto = productoRepository.save(producto); // Cambio de variable a updatedProducto
+    return ResponseEntity.ok(updatedProducto); // Cambio de variable a updatedProducto
+}
 
   /**
    * Delete user map.
@@ -95,7 +95,7 @@ public class ProductoController {
    * @throws Exception the exception
    */
   @DeleteMapping("/productos/{id}")
-  public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long productoId) throws Exception {
+  public Map<String, Boolean> deleteProducto(@PathVariable(value = "id") Long productoId) throws Exception {
     Producto producto =
         productoRepository
             .findById(productoId)

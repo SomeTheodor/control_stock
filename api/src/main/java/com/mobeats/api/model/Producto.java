@@ -22,6 +22,12 @@ public class Producto {
     @Column(name = "descripcion", nullable = false)
     private String description;
 
+    @Column(name = "precio", nullable = false)
+    private Long precio;
+
+    @Column(name = "cantidad", nullable = false)
+    private Long cantidad;
+
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_actualizacion", nullable = false)
@@ -55,6 +61,22 @@ public class Producto {
         this.description = description;
     }
 
+    public long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(long cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(long precio) {
+        this.precio = precio;
+    }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -77,6 +99,8 @@ public class Producto {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", precio='" + precio + '\'' +
+                ", cantidad='" + cantidad + '\'' +
                 ", updatedAt=" + updatedAt +
                 ", updatedBy='" + updatedBy + '\'' +
                 '}';
