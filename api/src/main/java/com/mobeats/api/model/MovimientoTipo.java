@@ -5,53 +5,106 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "movimientos_tipo")
+@Table(name = "movimientos_tipos")
 @EntityListeners(AuditingEntityListener.class)
-public class MovimientoTipo{
+public class MovimientoTipo {
 
-    @Id // Anotación para marcar un campo como clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Estrategia de generación de valores de clave primaria
-    @Column(name = "id") // Nombre de la columna en la base de datos
-    private Long id; // Campo de identificación
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "nombre", nullable = false)
-    private String name;
+    private String nombre;
 
     @Column(name = "descripcion", nullable = false)
-    private String description;
+    private String descripcion;
 
+    @Column(name = "saldo", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SaldoEnum saldo;
+    public enum SaldoEnum {
+        ACREEDOR,
+        DEUDOR
+    }
 
-    public long getId() {
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
+  public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
+  public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+  /**
+   * Gets nombre
+   *
+   * @return the nombre
+   */
+  public String getName() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+  /**
+   * Sets nombre.
+   *
+   * @param nombre the nombre
+   */
+  public void setName(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getDescription() {
-        return description;
+  /**
+   * Gets descripcion.
+   *
+   * @return the descripcion
+   */
+  public String getDescription() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+  /**
+   * Sets descripcion.
+   *
+   * @param descripcion the descripcion
+   */
+  public void setDescription(String descripcion) {
+        this.descripcion = descripcion;
+    }
+        /**
+     * Gets saldo.
+     *
+     * @return the saldo
+     */
+    public SaldoEnum getSaldo() {
+        return saldo;
     }
 
-   
+    /**
+     * Sets saldo.
+     *
+     * @param saldo the saldo
+     */
+    public void setSaldo(SaldoEnum saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public String toString() {
         return "MovimientoTipo{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' + 
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", saldo='" + saldo + '\'' +
                 '}';
     }
 }

@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The type User controller.
@@ -85,23 +83,4 @@ public ResponseEntity<MovimientoTipo> updateMovimientoTipo(
     return ResponseEntity.ok(updatedMovimientoTipo); // Cambio de variable a updatedProducto
 }
 
-  /**
-   * Delete user map.
-   *
-   * @param movimientoTipoId the user id
-   * @return the map
-   * @throws Exception the exception
-   */
-  @DeleteMapping("/movimiento_tipos/{id}")
-  public Map<String, Boolean> deleteMovimientoTipo(@PathVariable(value = "id") Long movimientoTipoId) throws Exception {
-    MovimientoTipo movimientoTipo =
-        movimientoTipoRepository
-            .findById(movimientoTipoId)
-            .orElseThrow(() -> new ResourceNotFoundException("Product not found on :: " + movimientoTipoId));
-
-   movimientoTipoRepository.delete(movimientoTipo);
-    Map<String, Boolean> response = new HashMap<>();
-    response.put("deleted", Boolean.TRUE);
-    return response;
-  }
 }

@@ -1,21 +1,37 @@
 package com.mobeats.api.service;
 
-import java.util.List;
-
+import com.mobeats.api.exception.ResourceNotFoundException;
+import com.mobeats.api.model.MovimientoTipo;
+import com.mobeats.api.repository.MovimientoTipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mobeats.api.model.MovimientoTipo;
-import com.mobeats.api.repository.MovimientoTipoRepository;
+import java.util.List;
 
 @Service
 public class MovimientoTipoService {
 
     @Autowired
     private MovimientoTipoRepository movimientoTipoRepository;
-    
-    public List<MovimientoTipo> findAll() {
-    return movimientoTipoRepository.findAll();
-  }
-    
+
+    public List<MovimientoTipo> getAllMovimientoTipos() {
+        return movimientoTipoRepository.findAll();
+    }
+
+    public MovimientoTipo getMovimientoTipoById(Long movimientoTipoId) {
+        return movimientoTipoRepository.findById(movimientoTipoId)
+                .orElseThrow(() -> new ResourceNotFoundException("MovimientoTipo not found on :: " + movimientoTipoId));
+    }
+
+    public MovimientoTipo createMovimientoTipo(MovimientoTipo movimientoTipo) {
+        return movimientoTipoRepository.save(movimientoTipo);
+    }
+
+    public MovimientoTipo updateMovimientoTipo(Long movimientoTipoId, MovimientoTipo movimientoTipoDetails) {
+        MovimientoTipo movimientoTipo = getMovimientoTipoById(movimientoTipoId);
+        movimientoTipo.setName(movimientoTipoDetails.getName());
+        movimientoTipo.setDescription(movimientoTipoDetails.getDescription());
+        movimientoTipo.setSaldo(movimientoTipoDetails.getSaldo());
+        return movimientoTipoRepository.save(movimientoTipo);
+    }
 }

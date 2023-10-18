@@ -12,9 +12,10 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class Producto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Id // Anotación para marcar un campo como clave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Estrategia de generación de valores de clave primaria
+    @Column(name = "id") // Nombre de la columna en la base de datos
+    private Long id; // Campo de identificación
 
     @Column(name = "nombre", nullable = false)
     private String name;
