@@ -77,7 +77,7 @@ public ResponseEntity<Deposito> updateDeposito(
             .findById(depositoId)
             .orElseThrow(() -> new ResourceNotFoundException("product not found on :: " + depositoId));
 
-    deposito.setName(depositoDetails.getName());
+    deposito.setNombre(depositoDetails.getNombre());
     final Deposito updateDeposito = depositoRepository.save(deposito); // Cambio de variable a updatedProducto
     return ResponseEntity.ok(updateDeposito); // Cambio de variable a updatedProducto
 }

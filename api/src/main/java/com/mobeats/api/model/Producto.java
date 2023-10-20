@@ -1,100 +1,193 @@
 package com.mobeats.api.model;
 
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "productos")
 @EntityListeners(AuditingEntityListener.class)
 public class Producto {
 
-    @Id // Anotación para marcar un campo como clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Estrategia de generación de valores de clave primaria
-    @Column(name = "id") // Nombre de la columna en la base de datos
-    private Long id; // Campo de identificación
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
-    @Column(name = "nombre", nullable = false)
-    private String name;
+  @Column(name = "nombre", nullable = false)
+  private String nombre;
 
-    @Column(name = "descripcion", nullable = false)
-    private String description;
+  @Column(name = "descripcion", nullable = false)
+  private String descripcion;
 
-    @Column(name = "precio", nullable = false)
-    private Long precio;
+  @Column(name = "precio", nullable = false)
+  private Float precio;
 
-    @Column(name = "cantidad", nullable = false)
-    private Long cantidad;
+  @Column(name = "cantidad", nullable = false)
+  private int cantidad;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha_actualizacion", nullable = false)
-    private Date updatedAt;
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "fecha_creacion", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  private Date fecha_creacion = new Date();
 
-    @Column(name = "updated_by", nullable = false)
-    @LastModifiedBy
-    private String updatedBy;
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "fecha_actualizacion", nullable = false)
+  private Date fecha_actualizacion;
 
-    public long getId() {
-        return id;
-    }
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
+  public long getId() {
+    return id;
+  }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  /**
+   * Gets nombre
+   *
+   * @return the nombre
+   */
+  public String getNombre() {
+    return nombre;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * Sets nombre.
+   *
+   * @param nombre the nombre
+   */
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  /**
+   * Gets descripcion.
+   *
+   * @return the descripcion
+   */
+  public String getDescripcion() {
+    return descripcion;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  /**
+   * Sets descripcion.
+   *
+   * @param descripcion the descripcion
+   */
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
 
-    public long getCantidad() {
-        return cantidad;
-    }
+  /**
+   * Gets precio.
+   *
+   * @return the precio
+   */
+  public Float getPrecio() {
+    return precio;
+  }
 
-    public void setCantidad(long cantidad) {
-        this.cantidad = cantidad;
-    }
+  /**
+   * Sets precio.
+   *
+   * @param precio the precio
+   */
+  public void setPrecio(Float precio) {
+    this.precio = precio;
+  }
 
-    public long getPrecio() {
-        return precio;
-    }
+  /**
+   * Gets cantidad.
+   *
+   * @return the cantidad
+   */
+  public Integer getCantidad() {
+    return cantidad;
+  }
 
-    public void setPrecio(long precio) {
-        this.precio = precio;
-    }
+  /**
+   * Sets cantidad.
+   *
+   * @param cantidad the cantidad
+   */
+  public void setCantidad(Integer cantidad) {
+    this.cantidad = cantidad;
+  }
 
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
+  /**
+   * Gets fecha_creacion.
+   *
+   * @return the fecha_creacion
+   */
+  public Date getFechaCreacion() {
+    return fecha_creacion;
+  }
 
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
+  /**
+   * Sets fecha_creacion.
+   *
+   * @param fecha_creacion the fecha_creacion
+   */
+  public void setFechaCreacion(Date fecha_creacion) {
+    this.fecha_creacion = fecha_creacion;
+  }
 
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", precio='" + precio + '\'' +
-                ", cantidad='" + cantidad + '\'' +
-                ", updatedBy='" + updatedBy + '\'' + 
-                '}';
-    }
+  /**
+   * Gets fecha_actualizacion.
+   *
+   * @return the fecha_actualizacion
+   */
+  public Date getFechaActualizacion() {
+    return fecha_actualizacion;
+  }
+
+  /**
+   * Sets fecha_actualizacion.
+   *
+   * @param fecha_actualizacion the fecha_actualizacion
+   */
+  public void setFechaActualizacion(Date fecha_actualizacion) {
+    this.fecha_actualizacion = fecha_actualizacion;
+  }
+
+  @Override
+  public String toString() {
+    return "Productos{" +
+        "id=" + id +
+        ", nombre='" + nombre + '\'' +
+        ", descripcion='" + descripcion + '\'' +
+        ", precio='" + precio + '\'' +
+        ", cantidad=" + cantidad +
+        ", fecha_creacion='" + fecha_creacion + '\'' +
+        ", fecha_actualizacion=" + fecha_actualizacion + '\'' +
+        '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Producto producto = (Producto) o;
+    return Objects.equals(id, producto.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
 }

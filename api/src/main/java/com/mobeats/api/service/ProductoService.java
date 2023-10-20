@@ -30,19 +30,18 @@ public class ProductoService {
 
     public Producto updateProducto(Long productoId, Producto productoDetails) {
         Producto producto = getProductoById(productoId);
-        producto.setName(productoDetails.getName());
-        producto.setDescription(productoDetails.getDescription());
+        producto.setNombre(productoDetails.getNombre());
+        producto.setDescripcion(productoDetails.getDescripcion());
         producto.setPrecio(productoDetails.getPrecio());
         producto.setCantidad(productoDetails.getCantidad());
         return productoRepository.save(producto);
     }
 
-    public Producto updateCantidadProducto(Long productoId, Long nuevaCantidad) {
+    public Producto updateCantidadProducto(Long productoId, Integer nuevaCantidad) {
         Producto producto = productoRepository.findById(productoId)
                 .orElseThrow(
                         () -> new ResourceNotFoundException("Producto not found on :: " + productoId));
-        producto.setCantidad(nuevaCantidad);
+            producto.setCantidad(nuevaCantidad);
         return productoRepository.save(producto);
     }
 }
-

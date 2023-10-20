@@ -3,7 +3,6 @@ package com.mobeats.api.model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 @Entity
@@ -16,7 +15,7 @@ public class Movimiento {
   private long id;
 
   @Column(name = "cantidad", nullable = false)
-  private Long cantidad;
+  private Integer cantidad;
 
   @ManyToOne
   @JoinColumn(name = "id_producto", referencedColumnName = "id")
@@ -27,7 +26,7 @@ public class Movimiento {
   private MovimientoTipo movimientoTipo;
 
   @ManyToOne
-  @JoinColumn(name = "id_deposito", referencedColumnName = "id")
+  @JoinColumn(name = "id_deposito_destino", referencedColumnName = "id")
   private Deposito deposito;
 
   @Temporal(TemporalType.TIMESTAMP)
@@ -42,11 +41,11 @@ public void setId(long id) {
   this.id = id;
 }
 
-public Long getCantidad() {
+public Integer getCantidad() {
   return cantidad;
 }
 
-public void setCantidad(Long cantidad) {
+public void setCantidad(Integer cantidad) {
   this.cantidad = cantidad;
 }
 

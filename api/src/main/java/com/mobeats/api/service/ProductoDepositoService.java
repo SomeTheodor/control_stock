@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class ProductoDepositoService {
     
@@ -37,7 +36,7 @@ public class ProductoDepositoService {
         return productoDepositoRepository.save(productoDeposito);
     }
 
-    public ProductoDeposito updateCantidadProductoDeposito(Long productoDepositoId, Long nuevaCantidad) {
+    public ProductoDeposito updateCantidadProductoDeposito(Long productoDepositoId, Integer nuevaCantidad) {
         ProductoDeposito productoDeposito = productoDepositoRepository.findById(productoDepositoId)
                 .orElseThrow(() -> new ResourceNotFoundException("ProductoDeposito not found on :: " + productoDepositoId));
         

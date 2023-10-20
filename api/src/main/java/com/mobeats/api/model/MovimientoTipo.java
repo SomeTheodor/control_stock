@@ -50,7 +50,7 @@ public class MovimientoTipo {
    *
    * @return the nombre
    */
-  public String getName() {
+  public String getNombre() {
         return nombre;
     }
 
@@ -59,7 +59,7 @@ public class MovimientoTipo {
    *
    * @param nombre the nombre
    */
-  public void setName(String nombre) {
+  public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -68,7 +68,7 @@ public class MovimientoTipo {
    *
    * @return the descripcion
    */
-  public String getDescription() {
+  public String getDescripcion() {
         return descripcion;
     }
 
@@ -77,7 +77,7 @@ public class MovimientoTipo {
    *
    * @param descripcion the descripcion
    */
-  public void setDescription(String descripcion) {
+  public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
         /**
@@ -100,7 +100,7 @@ public class MovimientoTipo {
 
     @Override
     public String toString() {
-        return "MovimientoTipo{" +
+        return "Productos{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +

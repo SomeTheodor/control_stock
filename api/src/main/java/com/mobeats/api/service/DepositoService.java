@@ -30,7 +30,7 @@ public class DepositoService {
 
     public Deposito updateDeposito(Long depositoId, Deposito depositoDetails) {
         Deposito deposito = getDepositoById(depositoId);
-        deposito.setName(depositoDetails.getName());
+        deposito.setNombre(depositoDetails.getNombre());
         return depositoRepository.save(deposito);
     }
 }

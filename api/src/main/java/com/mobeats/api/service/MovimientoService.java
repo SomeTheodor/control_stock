@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 import jakarta.transaction.Transactional;
 
 @Service
@@ -24,7 +23,7 @@ public class MovimientoService {
     private MovimientoRepository movimientoRepository;
 
     @Autowired
-    private MovimientoTipoRepository movimientoTipoRepository;
+    private MovimientoTipoRepository MovimientoTipoRepository;
 
     @Autowired
     private ProductoDepositoRepository productoDepositoRepository;
@@ -37,9 +36,6 @@ public class MovimientoService {
 
     @Autowired
     private ProductoService productoService;
-
-    @Autowired
-    private MovimientoTipoService movimientoTipoService;
 
     public List<Movimiento> getAllMovimientos() {
         return movimientoRepository.findAll();
@@ -54,30 +50,35 @@ public class MovimientoService {
     @Transactional
     public Movimiento createMovimiento(Movimiento movimiento) {
         Producto producto = productoRepository.findById(movimiento.getProducto().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Producto not found with ID: " + movimiento.getProducto().getId()));
-    
-        ProductoDeposito productoDeposito = productoDepositoRepository.findByProductoAndDeposito(producto, movimiento.getDeposito());
-        MovimientoTipo movimientoTipo = movimientoTipoRepository
-    .findById(movimiento.getProducto().getId())
-    .orElseThrow(() -> new ResourceNotFoundException("MovimientoTipo not found with ID: " + movimiento.getProducto().getId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Producto not found with ID: " + movimiento.getProducto().getId()));
 
-    
-        Long nuevaCantidad = movimiento.getCantidad();
-        Long nuevaCantidadProducto = nuevaCantidad;
-    
-        if ("ACREEDOR".equals(movimiento.getMovimientoTipo().getSaldo().toString())) {
+        ProductoDeposito productoDeposito = productoDepositoRepository.findByProductoAndDeposito(producto,
+                movimiento.getDeposito());
+        MovimientoTipo movimientoTipo = MovimientoTipoRepository.findById(movimiento.getMovimientoTipo().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "MovimientoTipo not found with ID: " + movimiento.getMovimientoTipo().getId()));
+
+        Integer nuevaCantidad = movimiento.getCantidad();
+        Integer nuevaCantidadProducto = nuevaCantidad;
+
+        if ("ACREEDOR".equals(movimientoTipo.getSaldo().toString())) {
             nuevaCantidad += productoDeposito.getCantidad();
             nuevaCantidadProducto += producto.getCantidad();
         } else {
-            nuevaCantidad = productoDeposito.getCantidad() - nuevaCantidad;
-            nuevaCantidadProducto = producto.getCantidad() - nuevaCantidad;
+            if(productoDeposito.getCantidad() >= nuevaCantidad){
+                nuevaCantidad = productoDeposito.getCantidad() - nuevaCantidad;
+                nuevaCantidadProducto = producto.getCantidad() - nuevaCantidadProducto;
+            }
+            else{
+                throw new RuntimeException("Estás queriendo sacar " + nuevaCantidad + " y en el deposito hay " + productoDeposito.getCantidad());
+            }
         }
-    
+
         productoDepositoService.updateCantidadProductoDeposito(productoDeposito.getId(), nuevaCantidad);
         productoService.updateCantidadProducto(movimiento.getProducto().getId(), nuevaCantidadProducto);
-    
+
         return movimientoRepository.save(movimiento);
     }
-    
-    
+
 }

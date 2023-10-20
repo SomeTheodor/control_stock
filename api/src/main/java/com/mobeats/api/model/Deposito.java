@@ -3,42 +3,76 @@ package com.mobeats.api.model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "depositos")
 @EntityListeners(AuditingEntityListener.class)
 public class Deposito {
-@Id // Anotación para marcar un campo como clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Estrategia de generación de valores de clave primaria
-    @Column(name = "id") // Nombre de la columna en la base de datos
-    private Long id; // Campo de identificación
 
-    @Column(name = "nombre", nullable = false)
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
-    // Getters y setters para id y name
+  @Column(name = "nombre", nullable = false)
+  private String nombre;
 
-    public Long getId() {
-        return id;
-    }
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
+  public long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  /**
+   * Gets nombre
+   *
+   * @return the nombre
+   */
+  public String getNombre() {
+    return nombre;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * Sets nombre.
+   *
+   * @param nombre the nombre
+   */
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 
-    @Override
-    public String toString() {
-        return "Deposito{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Depositos{" +
+        "id=" + id +
+        ", nombre='" + nombre + '\'' +
+        '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Deposito deposito = (Deposito) o;
+    return Objects.equals(id, deposito.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
 }

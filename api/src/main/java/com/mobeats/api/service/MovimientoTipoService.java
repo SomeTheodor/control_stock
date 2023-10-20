@@ -29,8 +29,8 @@ public class MovimientoTipoService {
 
     public MovimientoTipo updateMovimientoTipo(Long movimientoTipoId, MovimientoTipo movimientoTipoDetails) {
         MovimientoTipo movimientoTipo = getMovimientoTipoById(movimientoTipoId);
-        movimientoTipo.setName(movimientoTipoDetails.getName());
-        movimientoTipo.setDescription(movimientoTipoDetails.getDescription());
+        movimientoTipo.setNombre(movimientoTipoDetails.getNombre());
+        movimientoTipo.setDescripcion(movimientoTipoDetails.getDescripcion());
         movimientoTipo.setSaldo(movimientoTipoDetails.getSaldo());
         return movimientoTipoRepository.save(movimientoTipo);
     }

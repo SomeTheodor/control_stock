@@ -17,7 +17,7 @@ public class ProductoDeposito {
     private long id;
 
     @Column(name = "cantidad", nullable = false)
-    private Long cantidad;
+    private int cantidad;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,7 +56,7 @@ public class ProductoDeposito {
    *
    * @return the cantidad
    */
-  public Long getCantidad() {
+  public Integer getCantidad() {
         return cantidad;
     }
 
@@ -65,7 +65,7 @@ public class ProductoDeposito {
    *
    * @param cantidad the cantidad
    */
-  public void setCantidad(Long cantidad) {
+  public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
