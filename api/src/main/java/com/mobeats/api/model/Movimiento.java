@@ -5,6 +5,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "movimientos")
 @EntityListeners(AuditingEntityListener.class)
@@ -26,7 +27,7 @@ public class Movimiento {
   private MovimientoTipo movimientoTipo;
 
   @ManyToOne
-  @JoinColumn(name = "id_deposito_destino", referencedColumnName = "id")
+  @JoinColumn(name = "id_deposito", referencedColumnName = "id")
   private Deposito deposito;
 
   @Temporal(TemporalType.TIMESTAMP)

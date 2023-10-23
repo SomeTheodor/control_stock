@@ -13,8 +13,9 @@ import com.mobeats.api.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List; // Agrega la importación de List
 
 @Service
 public class MovimientoService {
@@ -23,7 +24,7 @@ public class MovimientoService {
     private MovimientoRepository movimientoRepository;
 
     @Autowired
-    private MovimientoTipoRepository MovimientoTipoRepository;
+    private MovimientoTipoRepository movimientoTipoRepository;
 
     @Autowired
     private ProductoDepositoRepository productoDepositoRepository;
@@ -44,7 +45,7 @@ public class MovimientoService {
     public Movimiento getMovimientoById(Long movimientoId) {
         return movimientoRepository
                 .findById(movimientoId)
-                .orElseThrow(() -> new ResourceNotFoundException("movimiento not found on :: " + movimientoId));
+                .orElseThrow(() -> new ResourceNotFoundException("Movimiento not found with ID: " + movimientoId));
     }
 
     @Transactional
@@ -55,7 +56,7 @@ public class MovimientoService {
 
         ProductoDeposito productoDeposito = productoDepositoRepository.findByProductoAndDeposito(producto,
                 movimiento.getDeposito());
-        MovimientoTipo movimientoTipo = MovimientoTipoRepository.findById(movimiento.getMovimientoTipo().getId())
+        MovimientoTipo movimientoTipo = movimientoTipoRepository.findById(movimiento.getMovimientoTipo().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "MovimientoTipo not found with ID: " + movimiento.getMovimientoTipo().getId()));
 
@@ -66,12 +67,12 @@ public class MovimientoService {
             nuevaCantidad += productoDeposito.getCantidad();
             nuevaCantidadProducto += producto.getCantidad();
         } else {
-            if(productoDeposito.getCantidad() >= nuevaCantidad){
+            if (productoDeposito.getCantidad() >= nuevaCantidad) {
                 nuevaCantidad = productoDeposito.getCantidad() - nuevaCantidad;
                 nuevaCantidadProducto = producto.getCantidad() - nuevaCantidadProducto;
-            }
-            else{
-                throw new RuntimeException("Estás queriendo sacar " + nuevaCantidad + " y en el deposito hay " + productoDeposito.getCantidad());
+            } else {
+                throw new RuntimeException("Estás queriendo sacar " + nuevaCantidad
+                        + " y en el depósito hay " + productoDeposito.getCantidad());
             }
         }
 
@@ -80,5 +81,4 @@ public class MovimientoService {
 
         return movimientoRepository.save(movimiento);
     }
-
 }
