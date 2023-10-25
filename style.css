@@ -188,10 +188,11 @@ th, td {
 /* Estilos para el contenido del modal 2 */
 .modal-content2 {
   background-color: #fff;
-  margin: 15% auto;
+  margin: auto;
+  margin-top: 60px;
   padding: 20px;
   border: 1px solid #888;
-  width: 30%;
+  width: 30%; /* Ajusta el ancho de la ventana emergente */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   text-align: center;
 }
