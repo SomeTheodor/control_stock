@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Control de Stock </title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<header>
+
+  <button id="openModalButton2"> Product add </button>
+
+  <select name="depositos" id="deposit">
+    
+    <option value=""> Deposito 1 </option>
+    <option value=""> Deposito 2 </option>
+    <option value=""> Deposito 3 </option>
+    <option value=""> Deposito 4 </option>
+    
+  </select>
+
+  <button id="openModalButton"> Movement </button>
+
+</header>
+<body>
+
+<!-- Lista de alumnos y faltas -->
+
+<table>
+
+  <thead>
+
+      <tr>
+      
+          <th> ID </th>
+          <th> Product Name </th>
+          <th> Stock </th>
+          <th> Deposito </th>
+
+      </tr>
+
+  </thead>
+
+  <tbody id="tablaAlumnos">
+
+      <!-- Aquí se llenará la lista de alumnos y faltas -->
+    
+       <tr>
+      
+          <th>  </th>
+          <th>  </th>
+          <th>  </th>
+          <th>  </th>
+
+      </tr>
+
+  </tbody>
+  
+</table>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" id="closeModal">&times;</span>
+
+        <h2>Movement</h2>
+
+        <label for="movement">Movement type</label>
+        <select name="movement" id="movement">
+
+            <option value="">Alta</option>
+            <option value="">Baja</option>
+
+        </select>
+
+        <label for="product"> Product </label>
+        <select name="product" id="product">
+
+            <option value="">Producto A</option>
+            <option value="">Producto B</option>
+
+        </select>
+
+        <label for="cant">Cant</label>
+        <input type="text" name="cant" id="cant" required>
+
+        <label for="deposito">Deposite</label>
+        <select name="deposito" id="deposito">
+
+          <option value=""> Deposito 1 </option>
+          <option value=""> Deposito 2 </option>
+          <option value=""> Deposito 3 </option>
+          <option value=""> Deposito 4 </option>
+
+        </select>
+
+        <button> Make Movement </button>
+
+    </div>
+</div>
+
+
+<div id="myModal2" class="modal">
+  <div class="modal-content2">
+
+      <span class="close2" id="closeModal2">&times;</span>
+
+      <h2>Add Product</h2>
+      
+      <label for="product_name">Product Name</label>
+      <input type="text" name="product_name" id="product_name">
+
+      <label for="cant">Cant</label>
+      <input type="text" name="cant" id="cant">
+
+      <button>Make Product</button>
+
+  </div>
+</div>
+
+
+
+<script src="productPop.js"></script>
+</body>
+</html>

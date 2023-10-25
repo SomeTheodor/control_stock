@@ -1,0 +1,244 @@
+/* Estilo del header */
+header {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 30px;
+}
+
+/* Estilos de etiquetas */
+label {
+  color: #000000;
+  margin-right: 10px;
+}
+
+/* Estilos de select */
+select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Estilos de botones */
+button {
+  background-color: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #004799;
+}
+
+/* Estilos para el botón "Movement" */
+#openModalButton {
+  float: right;
+}
+
+/* Estilos para el botón "Product add" */
+#openModalButton2 {
+  float: left;
+}
+
+/* Estilo de la lista de alumnos */
+h2 {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+/* Estilos de la tabla */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  text-align: center;
+}
+
+/* Estilos de la ventana emergente (modal) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos para el botón "Cerrar" (la "X") en la ventana emergente */
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* Estilos para el contenido de la ventana emergente */
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  margin-top: 60px;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; /* Ajusta el ancho de la ventana emergente */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Estilos para etiquetas y campos de entrada en la ventana emergente */
+.modal-content select,
+.modal-content textarea,
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; /* Evita que el input sobresalga por la derecha del fondo */
+}
+
+.modal-content select {
+  height: 40px;
+}
+
+/* Ajusta el tamaño del textarea en la ventana emergente */
+.modal-content textarea {
+  width: 100%;
+  height: 200px; /* Ajusta la altura del textarea */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; /* Evita que el textarea sobresalga por la derecha del fondo */
+}
+
+/* Estilos para las etiquetas de los elementos en la ventana emergente */
+.modal-content label {
+  display: block; /* Para que cada etiqueta aparezca en una línea nueva */
+  font-weight: bold; /* Texto en negrita para las etiquetas */
+}
+
+/* Estilos para el botón "Cerrar" (la "X") en la ventana emergente */
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* Estilos para la ventana emergente "Add Product" */
+#myModal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content2 {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.close2 {
+  float: right;
+ 
+}
+
+/* Estilos para el modal 2 */
+#myModal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos para el contenido del modal 2 */
+.modal-content2 {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Estilos para el botón "Cerrar" (la "X") en el modal 2 */
+.close2 {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.close2:hover {
+  color: red;
+}
+
+/* Estilos para el título del modal 2 */
+.modal-content2 h2 {
+  font-size: 24px;
+}
+
+/* Estilos para etiquetas y campos de entrada en el modal 2 */
+.modal-content2 label {
+  display: block;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.modal-content2 input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; /* Evita que el input sobresalga por la derecha del fondo */
+}
+
+/* Estilos para el botón en el modal 2 */
+.modal-content2 button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.modal-content2 button:hover {
+  background-color: #0056b3;
+}
