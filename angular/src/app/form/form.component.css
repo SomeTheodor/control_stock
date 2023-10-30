@@ -1,0 +1,45 @@
+/* Center the form and make inputs smaller */
+.my-form {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Custom input style */
+  .custom-input {
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Custom select style */
+  .custom-select {
+    border: 1px solid #e74c3c;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Custom button style */
+  .custom-button {
+    background-color: #27ae60;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .page-header {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Color de texto deseado */
+  }
+  /* Optional: Add more custom styles as needed */
+  
+  /* Optional: Add more custom styles as needed */
+  
