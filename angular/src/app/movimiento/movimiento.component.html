@@ -1,0 +1,16 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let card of listaCard">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">{{ card.cantidad}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ card.movimientoTipo.nombre}}</h6>
+            <p class="card-text">{{ card.deposito.nombre}}</p>
+            <h5 class="card-title">{{ card.producto.nombre }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ card.producto.descripcion}}</h6>
+            <p class="card-text">{{ card.precio }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

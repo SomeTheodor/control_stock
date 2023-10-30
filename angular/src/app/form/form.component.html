@@ -1,0 +1,26 @@
+<form (ngSubmit)="enviarDatos()" #formulario="ngForm">
+    <div>
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" [(ngModel)]="formularioData.cantidad" required>
+    </div>
+    <div>
+      <label for="producto">Producto:</label>
+      <select id="producto" name="producto" [(ngModel)]="formularioData.productoId" required>
+        <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="movimientoTipo">Tipo de Movimiento:</label>
+      <select id="movimientoTipo" name="movimientoTipo" [(ngModel)]="formularioData.movimientoTipoId" required>
+        <option *ngFor="let tipo of tiposMovimiento" [value]="tipo.id">{{ tipo.nombre }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="deposito">Depósito:</label>
+      <select id="deposito" name="deposito" [(ngModel)]="formularioData.depositoId" required>
+        <option *ngFor="let deposito of depositos" [value]="deposito.id">{{ deposito.nombre }}</option>
+      </select>
+    </div>
+    <button type="submit">Enviar</button>
+  </form>
+  
