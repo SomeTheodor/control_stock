@@ -16,6 +16,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class DepositoController {
 
   @Autowired
@@ -55,7 +56,7 @@ public class DepositoController {
    * @return the user
    */
   @PostMapping("/depositos")
-  public Deposito createProducto(@Valid @RequestBody Deposito deposito) {
+  public Deposito createDeposito(@Valid @RequestBody Deposito deposito) {
     return depositoRepository.save(deposito);
   }
 
