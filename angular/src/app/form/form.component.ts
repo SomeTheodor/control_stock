@@ -11,17 +11,20 @@ interface DatosFormulario {
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
   formularioData: DatosFormulario = { cantidad: 0, productoId: 0, movimientoTipoId: 0, depositoId: 0 };
-  productos: any[] = []; // Array para almacenar opciones de productos
-  tiposMovimiento: any[] = []; // Array para almacenar opciones de tipos de movimiento
-  depositos: any[] = []; // Array para almacenar opciones de depósitos
+  productos: any[] = [];
+  tiposMovimiento: any[] = [];
+  depositos: any[] = [];
+  errorMensaje: string = '';
+  cantidadProducto: number = 0; // Cambiado a número en lugar de array
+  cantidadDeposito: any[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    // Carga las opciones de productos, tipos de movimiento y depósitos desde tu backend.
     this.cargarProductos();
     this.cargarTiposMovimiento();
     this.cargarDepositos();
@@ -30,10 +33,10 @@ export class FormComponent implements OnInit {
   cargarProductos() {
     this.http.get('http://localhost:8080/api/v1/productos').subscribe(
       (response: any) => {
-        this.productos = response; // Asigna la respuesta a this.productos
+        this.productos = response;
       },
       (error) => {
-        console.error('Error al cargar opciones de productos', error);
+        this.errorMensaje = 'Error al cargar opciones de productos: ' + error;
       }
     );
   }
@@ -41,10 +44,10 @@ export class FormComponent implements OnInit {
   cargarTiposMovimiento() {
     this.http.get('http://localhost:8080/api/v1/movimientos_tipos').subscribe(
       (response: any) => {
-        this.tiposMovimiento = response; // Asigna la respuesta a this.tiposMovimiento
+        this.tiposMovimiento = response;
       },
       (error) => {
-        console.error('Error al cargar opciones de tipos de movimiento', error);
+        this.errorMensaje = 'Error al cargar opciones de tipos de movimiento: ' + error;
       }
     );
   }
@@ -52,31 +55,53 @@ export class FormComponent implements OnInit {
   cargarDepositos() {
     this.http.get('http://localhost:8080/api/v1/depositos').subscribe(
       (response: any) => {
-        this.depositos = response; // Asigna la respuesta a this.depositos
+        this.depositos = response;
       },
       (error) => {
-        console.error('Error al cargar opciones de depósitos', error);
+        this.errorMensaje = 'Error al cargar opciones de depósitos: ' + error;
+      }
+    );
+  }
+
+  cargarCantidadProducto() {
+    const productoId = this.formularioData.productoId;
+    this.http.get(`http://localhost:8080/api/v1/productos/${productoId}`).subscribe(
+      (response: any) => {
+        this.cantidadProducto = response.cantidad;
+      },
+      (error) => {
+        console.error('Error al cargar la cantidad del producto', error);
+      }
+    );
+
+    // Obtener la lista de depósitos y sus cantidades respectivas
+    this.http.get(`http://localhost:8080/api/v1/productos_depositos/producto/${productoId}`).subscribe(
+      (response: any) => {
+        this.cantidadDeposito = response;
+      },
+      (error) => {
+        console.error('Error al cargar la lista de depósitos', error);
       }
     );
   }
 
   enviarDatos() {
     const requestData = {
-      producto: { id: this.formularioData.productoId },
-      deposito: { id: this.formularioData.depositoId },
-      movimientoTipo: { id: this.formularioData.movimientoTipoId},
-      cantidad: this.formularioData.cantidad
+      producto: { id: this.formularioData['productoId'] },
+      deposito: { id: this.formularioData['depositoId'] },
+      movimientoTipo: { id: this.formularioData['movimientoTipoId'] },
+      cantidad: this.formularioData['cantidad']
     };
     const url = 'http://localhost:8080/api/v1/movimientos';
-
+  
     this.http.post(url, requestData).subscribe(
       (response) => {
-        console.log('Datos enviados con éxito', response);
+        this.errorMensaje = 'Datos enviados con éxito';
       },
       (error) => {
-        console.error('Error al enviar los datos', error);
-      }
-    );
+        this.errorMensaje = 'Error al enviar los datos';
+      });
     console.log('Datos a enviar:', requestData);
+    console.log(this.cantidadDeposito);
   }
-}
+}  
