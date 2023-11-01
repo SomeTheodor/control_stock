@@ -30,6 +30,10 @@ public class ProductoDepositoController {
         ProductoDeposito productoDeposito = productoDepositoService.getProductoDepositoById(productoDepositoId);
         return ResponseEntity.ok().body(productoDeposito);
     }
+    @GetMapping("/productos_depositos/producto/{id_producto}")
+    public List<ProductoDeposito> getProductosDepositosByProductoId(@PathVariable(value = "id_producto") Long productoId) {
+    return productoDepositoService.getProductosDepositosByProductoId(productoId);
+    }
 
     @PostMapping("/productos_depositos")
     public ProductoDeposito createProductoDeposito(@Valid @RequestBody ProductoDeposito productoDeposito) {
