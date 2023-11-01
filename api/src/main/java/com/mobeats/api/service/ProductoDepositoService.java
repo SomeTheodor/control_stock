@@ -17,7 +17,10 @@ public class ProductoDepositoService {
     public List<ProductoDeposito> getAllProductosDepositos() {
         return productoDepositoRepository.findAll();
     }
-
+    public List<ProductoDeposito> getProductosDepositosByProductoId(Long productoId) {
+        return productoDepositoRepository.findByProductoId(productoId);
+    }
+    
     public ProductoDeposito getProductoDepositoById(Long productoDepositoId) {
         return productoDepositoRepository
                 .findById(productoDepositoId)
