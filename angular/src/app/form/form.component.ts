@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface DatosFormulario {
-  cantidad: number;
-  productoId: number;
-  movimientoTipoId: number;
-  depositoId: number;
-}
-
+import { ProductoService } from '../service/producto.service';
+import { MovimientoTipoService } from '../service/movimiento-tipo.service';
+import { DepositoService } from '../service/deposito.service';
+import { ProductoDepositoService } from '../service/producto-deposito.service';
+import { MovimientoService } from '../service/movimiento.service';
+import { DatosFormulario } from '../datos-formulario';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -19,19 +17,21 @@ export class FormComponent implements OnInit {
   tiposMovimiento: any[] = [];
   depositos: any[] = [];
   errorMensaje: string = '';
-  cantidadProducto: number = 0; // Cambiado a número en lugar de array
+  cantidadProducto: number = 0;
   cantidadDeposito: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private productoService: ProductoService, private movimientoTipoService: MovimientoTipoService,
+    private depositoService: DepositoService, private productoDepositoService: ProductoDepositoService, private movimientoService: MovimientoService) {}
 
   ngOnInit() {
     this.cargarProductos();
     this.cargarTiposMovimiento();
     this.cargarDepositos();
+    this.cargarCantidadProducto();
   }
 
   cargarProductos() {
-    this.http.get('http://localhost:8080/api/v1/productos').subscribe(
+    this.productoService.cargarProductos().subscribe(
       (response: any) => {
         this.productos = response;
       },
@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
   }
 
   cargarTiposMovimiento() {
-    this.http.get('http://localhost:8080/api/v1/movimientos_tipos').subscribe(
+    this.movimientoTipoService.cargarTiposMovimiento().subscribe(
       (response: any) => {
         this.tiposMovimiento = response;
       },
@@ -53,7 +53,7 @@ export class FormComponent implements OnInit {
   }
 
   cargarDepositos() {
-    this.http.get('http://localhost:8080/api/v1/depositos').subscribe(
+    this.depositoService.cargarDeposito().subscribe(
       (response: any) => {
         this.depositos = response;
       },
@@ -65,7 +65,7 @@ export class FormComponent implements OnInit {
 
   cargarCantidadProducto() {
     const productoId = this.formularioData.productoId;
-    this.http.get(`http://localhost:8080/api/v1/productos/${productoId}`).subscribe(
+    this.productoService.cargarProductoId(productoId).subscribe(
       (response: any) => {
         this.cantidadProducto = response.cantidad;
       },
@@ -75,7 +75,7 @@ export class FormComponent implements OnInit {
     );
 
     // Obtener la lista de depósitos y sus cantidades respectivas
-    this.http.get(`http://localhost:8080/api/v1/productos_depositos/producto/${productoId}`).subscribe(
+    this.productoDepositoService.cargarProductoDeposito(productoId).subscribe(
       (response: any) => {
         this.cantidadDeposito = response;
       },
@@ -92,9 +92,8 @@ export class FormComponent implements OnInit {
       movimientoTipo: { id: this.formularioData['movimientoTipoId'] },
       cantidad: this.formularioData['cantidad']
     };
-    const url = 'http://localhost:8080/api/v1/movimientos';
   
-    this.http.post(url, requestData).subscribe(
+    this.movimientoService.enviarDatos(requestData).subscribe(
       (response) => {
         this.errorMensaje = 'Datos enviados con éxito';
       },
@@ -103,5 +102,10 @@ export class FormComponent implements OnInit {
       });
     console.log('Datos a enviar:', requestData);
     console.log(this.cantidadDeposito);
+
+    setTimeout(() => {
+      window.location.reload();
+  }, 1000);
   }
+  
 }  

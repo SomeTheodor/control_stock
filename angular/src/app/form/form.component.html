@@ -17,13 +17,14 @@
     <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
   </select>
 </div>
-<p>Cantidad total del producto: {{ cantidadProducto }}</p>
+<p class="producto-cantidad">Cantidad total del producto: {{ cantidadProducto }}</p>
 
-<ul>
-  <li *ngFor="let deposito of cantidadDeposito">
+<ul class="lista-depositos">
+  <li *ngFor="let deposito of cantidadDeposito" class="deposito-item">
     {{ deposito.deposito.nombre }} - Cantidad: {{ deposito.cantidad }}
   </li>
-</ul> 
+</ul>
+
   <div class="form-group">
     <label for="movimientoTipo">Tipo de Movimiento:</label>
     <select id="movimientoTipo" name="movimientoTipo" [(ngModel)]="formularioData.movimientoTipoId" required class="form-control custom-select">
